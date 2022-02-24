@@ -1,3 +1,4 @@
+DateTime==4.3
 google-cloud-bigquery
 numpy
 pandas
