@@ -19,8 +19,8 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: pwd
-      # - run: pip3 install -r requirements.txt
-      # - run: jupyter nbconvert --execute Untitled.ipynb
+      - run: pip3 install -r requirements.txt
+      - run: jupyter nbconvert --execute Untitled.ipynb
       - name: 'Update version'
         run: |
           git add .
