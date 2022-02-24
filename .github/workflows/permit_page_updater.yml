@@ -1,4 +1,9 @@
 name: Permits Page Updater
+on:
+  push:
+  schedule:
+    # every day at 7 (timezone unknown)
+    - cron:  '0 9 * * *'
 jobs:
   Permits-Updater:
     runs-on: macos-latest
