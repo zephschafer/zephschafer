@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!-- Thursday, Feb 24, 2022 01:55 -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title id="title">Projects</title>
+	<link rel="stylesheet" href="styles_projects.css" type="" media="screen" />
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+	<h1 style='margin-top:50px;text-align:center;margin-left:20px'>Portland Building Permits Report Wednesday, Feb 23, 2022</h1>
+	<p style='text-align:center;font-size:12px;'>
+		Access to the full dataset is available for purchase.
+		Send an email to zephyr.schafer@gmail.com to request
+	</p>
+	<p style='margin-left:10%;margin-right:10%;text-align:left;font-size:16px;'>
+    On Wednesday, Feb 23, 2022, the City of Portland issued permits for 18.1K new square footage of development.
+    That's 441.1% of the average for a Wednesday for the past 365 days.
+    (Over the past year, the City has averaged 32.7K permits per day and 79.8K permits per Wednesday
+    There were 44 permits with square footage, a mean of 403, a median of 0.
+    The greatest amount of square footage was 5,130, the smallest amount of square footage came from 0
+		<br> <br>
+			The graph below shows the breakdown of square footage by use type.
+<img src="output.png" style=" display: block;margin-left: auto;margin-right: auto;width: 50%;"alt="">
+		<br> <br>
+			The table below shows the permits issued yesterday
+			<div style='margin-left: 25%;text-align: center;'id='thetable'></div>
+	</p>
+<script>
+var tabulate = function (data,columns) {
+  var table = d3.select('#thetable').append('table')
+	var thead = table.append('thead')
+	var tbody = table.append('tbody')
+
+	thead.append('tr')
+	  .selectAll('th')
+	    .data(columns)
+	    .enter()
+	  .append('th')
+	    .text(function (d) { return d })
+
+	var rows = tbody.selectAll('tr')
+	    .data(data)
+	    .enter()
+	  .append('tr')
+
+	var cells = rows.selectAll('td')
+	    .data(function(row) {
+	    	return columns.map(function (column) {
+	    		return { column: column, value: row[column] }
+	      })
+      })
+      .enter()
+    .append('td')
+      .text(function (d) { return d.value })
+
+  return table;
+}
+
+d3.csv('table1.csv',function (data) {
+	var columns = ['Type of Structure', 'Type of Work', 'Number of Permits', 'Total Sqft','Mean SqFt']
+  tabulate(data,columns)
+})
+</script>
+<html>
