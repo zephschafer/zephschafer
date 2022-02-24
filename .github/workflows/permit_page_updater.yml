@@ -1,0 +1,19 @@
+name: Permits Page Updater
+jobs:
+  Permits-Updater:
+    runs-on: macos-latest
+    steps:
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: google-github-actions/auth@v0.4.0
+        with:
+          credentials_json: '${{ secrets.GOOGLE_BIGQ_TEST_KEY }}'
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: pwd
+      - run: pip3 install -r updaters/requirements.txt
+      - run: jupyter nbconvert --execute Untitled.ipynb
+      - run: echo "🍏 This job's status is ${{ job.status }}."

@@ -1,0 +1,20 @@
+
+
+html, body { margin:0; padding:0; overflow:hidden; background: #FEFEFE;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px; font-weight: 300;}
+svg { position:fixed; top:0; left:0; height:100%; width:100% }
+
+p {
+  position: absolute;
+  background: lime;
+  bottom: 10px;
+  right: 30%;
+}
+
+h1 {
+  position: absolute;
+  background: lime;
+  bottom: 32px;
+  right: 30%;
+}
