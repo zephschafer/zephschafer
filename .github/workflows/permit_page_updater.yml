@@ -24,6 +24,6 @@ jobs:
       - name: 'Update version'
         run: |
           git add .
-          git commit -am "Update version"
+          git commit -am "Update"
           git push
       - run: echo "🍏 This job's status is ${{ job.status }}."
