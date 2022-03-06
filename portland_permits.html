@@ -1,32 +1,63 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <!-- Thursday, Feb 24, 2022 09:24 -->
+    <!-- Sunday, Feb 27, 2022 08:37 -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title id="title">Projects</title>
 	<link rel="stylesheet" href="styles_projects.css" type="" media="screen" />
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="https://d3js.org/d3.v4.js"></script>
 </head>
 <body>
-	<h1 style='margin-top:50px;text-align:center;margin-left:20px'>Portland Building Permits Report Wednesday, Feb 23, 2022</h1>
+	<h1 style='margin-top:50px;text-align:center;margin-left:20px'>Portland Building Permits Report Friday, Feb 25, 2022</h1>
 	<p style='text-align:center;font-size:12px;'>
 		Access to the full dataset is available for purchase.
 		Send an email to zephyr.schafer@gmail.com to request
 	</p>
+	<div id="graph"></div>
+	<div id="selector"></div>
 	<p style='margin-left:10%;margin-right:10%;text-align:left;font-size:16px;'>
-    On Wednesday, Feb 23, 2022, the City of Portland issued permits for 18.1K new square footage of development.
-    That's 441.1% of the average for a Wednesday for the past 365 days.
-    (Over the past year, the City has averaged 32.7K permits per day and 79.8K permits per Wednesday
-    There were 44 permits with square footage, a mean of 403, a median of 0.
-    The greatest amount of square footage was 5,130, the smallest amount of square footage came from 0
-		<br> <br>
-			The graph below shows the breakdown of square footage by use type.
-<img src="output.png" style=" display: block;margin-left: auto;margin-right: auto;width: 50%;"alt="">
-		<br> <br>
-			The table below shows the permits issued yesterday
-			<div style='margin-left: 25%;text-align: center;'id='thetable'></div>
+    On Friday, Feb 25, 2022, the City of Portland issued permits for 13.6K new square footage of development.
+    That's 324.1% of the average for a Friday for the past 365 days.
+    (Over the past year, the City has averaged 31.6K permits per day and 44.1K permits per Friday
+    There were 27 permits with square footage, a mean of 487, a median of 0.
+    The greatest amount of square footage was 3,594, the smallest amount of square footage came from 0
+		<br><br>
+		The table below describes the permits issued
 	</p>
-<script src='/tablemaker.js'></script>
-</script>
+	<div id="observablehq-table-c2a0823a"></div>
+	<script type="module">
+		import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+		import define from "https://api.observablehq.com/d/f22c76965ea910f4.js?v=3";
+		new Runtime().module(define, name => {
+		  if (name === "table") return new Inspector(document.querySelector("#observablehq-table-c2a0823a"));
+		});
+	</script>
+	<div style='text-align:center;' id="my_dataviz"></div>
+	<p style='margin-left:10%;margin-right:10%;text-align:left;font-size:16px;'>
+		The table below shows both the permits issued and submitted yesterday.
+		<select id="selectButton2"></select>
+		<div style='text-align:center;' id='thetable'></div>
+	</p>
+	<p style='margin-left:10%;margin-right:10%;text-align:left;font-size:16px;'>
+		Average Days to Issue <select id="selectButton3"></select>
+	</p>
+	<div id="graph2" style='text-align:center;'></div>
+	<p style='margin-left:10%;margin-right:10%;text-align:left;font-size:16px;'>
+		The table below shows the permits issued yesterday
+	</p>
+	<div id="chart2" style='text-align:center;'></div>
+	<div id="chart3" style='text-align:center;'></div>
+
+	<script type="module">
+		import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+		import define from "https://api.observablehq.com/@zschafer/untitled.js?v=3";
+		new Runtime().module(define, name => {
+			if (name === "display") return new Inspector(document.querySelector("#graph"));
+			if (name === "viewof cells") return new Inspector(document.querySelector("#selector"));
+			return ["Tooltip"].includes(name);
+		});
+	</script>
+
 <html>
