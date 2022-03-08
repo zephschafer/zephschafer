@@ -1,6 +1,6 @@
 name: Permits Page Updater
 on:
-  push:
+  # push:
   schedule:
     # every day at 7 (timezone unknown)##
     - cron:  '0 9 * * *'

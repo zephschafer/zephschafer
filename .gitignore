@@ -1,2 +1,7 @@
-.ipynb_checkpoints/*
-Untitled.html
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
