@@ -58,9 +58,6 @@ p {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #FEFEFE;
-  /* background-color: #1a1a1c; */
-  /* background-color: #08396B; */
-  /* background-image: url('/static/image.png') */
   font-size: 13px;
   font-weight: 200;
   top: 20px;
@@ -80,4 +77,21 @@ a {
 
 a:visited {
   color: #909090;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: gray;
+  color: #fff;
+  text-align: center;
+  padding: 5px 5px 5px;
+  border-radius: 6px;
+
+  position:absolute;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.headerWithTooltip:hover .tooltiptext {
+  visibility: visible;
 }

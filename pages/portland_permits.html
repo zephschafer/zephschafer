@@ -2,48 +2,73 @@
 <html>
 <head>
     <!-- Sunday, Feb 27, 2022 08:37 -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title id="title">Projects</title>
-	<link rel="stylesheet" href="/styles/styles_projects.css" type="" media="screen" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Projects</title>
+    <link rel="stylesheet" href="/styles/styles_projects.css" type="" media="screen" />
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-	<script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
 </head>
 <body>
-	<h1 style='margin-top:50px;text-align:center;margin-left:20px'>Portland Building Permits Report Friday, Feb 25, 2022</h1>
-	<p style='text-align:center;font-size:12px;'>
-		Access to the full dataset is available for purchase.
-		Send an email to zephyr.schafer@gmail.com to request
-	</p>
-
-	<div id="graph"></div>
-	<div id="selector"></div>
-
-	<p style='margin-left:10%;margin-right:10%;text-align:left;font-size:16px;'>
-    On Friday, Feb 25, 2022, the City of Portland issued permits for 13.6K new square footage of development.
-    That's 324.1% of the average for a Friday for the past 365 days.
-    (Over the past year, the City has averaged 31.6K permits per day and 44.1K permits per Friday
-    There were 27 permits with square footage, a mean of 487, a median of 0.
-    The greatest amount of square footage was 3,594, the smallest amount of square footage came from 0
-		<br><br>
-		The table below describes the permits issued yesterday
-	</p>
-
-	<div style='margin-left:10%;margin-right:10%;text-align:left;font-size:14px;' id="yesterday_permits"></div>
-
-	<p style='margin-left:10%;margin-bottom:50px;margin-top:75px;margin-right:10%;text-align:left;font-size:16px;'>
-		Building permits vary by the type of structure, its function, and the type
-		of construction. The stacked area chart below shows a rolling 365-day average
-		of permits by type and date if issue.
-	</p>
-
-	<div div style='margin-left:10%;margin-right:10%;text-align:left;font-size:14px;' id="permits-stacked-by-type-viewof-selector"></div>
-	<div div style='margin-left:10%;margin-right:10%;text-align:left;font-size:14px;' id="permits-stacked-by-type-key"></div>
-	<div div style='margin-left:10%;margin-right:10%;text-align:left;font-size:14px;' id="permits-stacked-by-type-chart"></div>
+    <h1 style='margin-top:50px;text-align:center;margin-left:20px;'>Portland Development Report</h1>
+    <p style='text-align:center;font-size:12px;'>
+        Last Updated: Monday, Mar 07, 2022
+        <br>
+        Source: City of Portland, <a href='https://www.portlandmaps.com/development/'>Portland Maps API</a>
+        <br>
+        Email zephyr.schafer@gmail.com with data requests or inquiries.
+    </p>
 
 
-	<script type='module' src='/scripts/permits_report/yesterday_permits_table.js'></script>
-	<script type='module' src='/scripts/permits_report/permits_timeseries.js'></script>
-	<script type='module' src='/scripts/permits_report/permits_stacked_by_type.js'></script>
+    <p style='margin-left:10%;margin-right:10%;text-align:left;font-size:16px;'>
+        To add to the City's developed supply of space, new construction projects require approval
+        from the City's <a href='https://www.portland.gov/bds'>Bureau of Development Services</a>.
+        To daily report tracks the pace of development through the volume of permit.
+        <br>
+    <p style='margin-left:10%;margin-right:10%;text-align:left;font-size:16px;'>
+        For the 365-day period ending on Monday, Mar 07, 2022,
+        the City issued a total of 2,031 permits
+        with at least 200 new square feet of development
+        , or 5.6 per day.
+         On average, these allowed for 39,720
+        new square feet of development, and 24 new residential units.
+        The graph below shows permit issuances from 2010 through today.
+    </p>
+    <div class='headerWithTooltip'>
+        <h4 class='headerWithTooltip' style='text-align:center;'>Average Daily Permits Issued (rolling 365-day mean)
+            <span class="tooltiptext">The graph shows a rolling 365-day average. Only permits with at least 200 square feet of affected construction are included.</span>
+        </h4>
+    </div>
+    <div id="graph"></div>
+    <div id="selector"></div>
+
+    <p style='margin-left:10%;margin-right:10%;text-align:left;font-size:16px;'>
+        Yesterday, (Monday, Mar 07, 2022) the City of Portland
+        issued permits for 218.3 K new square footage of development.
+        That's 324.1% of the average for a Friday for the past 365 days.
+        (Over the past year, the City has averaged 31.6K permits per day and 44.1K permits per Friday
+        There were 27 permits with square footage, a mean of 487, a median of 0.
+        The greatest amount of square footage was 3,594, the smallest amount of square footage came from 0
+        <br><br>
+        The table below describes the permits issued yesterday
+    </p>
+
+    <div style='margin-left:10%;margin-right:10%;text-align:left;font-size:14px;' id="yesterday_permits"></div>
+
+    <p style='margin-left:10%;margin-bottom:50px;margin-top:75px;margin-right:10%;text-align:left;font-size:16px;'>
+        Building permits vary by the type of structure, its function, and the type
+        of construction. The stacked area chart below shows a rolling 365-day average
+        of permits by type and date if issue.
+    </p>
+
+    <div style='margin-left:10%;margin-right:10%;text-align:left;font-size:14px;' id="permits-stacked-by-type-viewof-selector"></div>
+    <div style='margin-left:10%;margin-right:10%;text-align:left;font-size:14px;' id="permits-stacked-by-type-key"></div>
+    <div style='margin-left:10%;margin-right:10%;text-align:left;font-size:14px;' id="permits-stacked-by-type-chart"></div>
+    <div style='margin-top:20%'></div>
+
+
+    <script type='module' src='/scripts/permits_report/yesterday_permits_table.js'></script>
+    <script type='module' src='/scripts/permits_report/permits_timeseries.js'></script>
+    <script type='module' src='/scripts/permits_report/permits_stacked_by_type.js'></script>
 
 <html>
