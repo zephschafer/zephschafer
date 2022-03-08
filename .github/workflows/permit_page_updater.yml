@@ -20,7 +20,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: pwd
       - run: pip3 install -r meta/requirements.txt
-      - run: jupyter nbconvert --execute Untitled.ipynb
+      - run: jupyter nbconvert --execute notebooks/Permits_Analysis.ipynb
       - name: 'Update version'
         run: |
           git add .
