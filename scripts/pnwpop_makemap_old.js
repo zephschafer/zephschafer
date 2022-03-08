@@ -1,4 +1,4 @@
-d3.csv("/data/population_history_viz/locations.csv", function(error, cities) {
+d3.csv("https://raw.githubusercontent.com/zephschafer/zephschafer/master/data/population_history_viz/locations.csv", function(error, cities) {
   var dataset = cities;
 
   var width = window.innerWidth;
@@ -39,8 +39,8 @@ d3.csv("/data/population_history_viz/locations.csv", function(error, cities) {
 
 
   Promise.all([
-    fetch('/data/population_history_viz/basemap1.json').then(r => r.json()),
-    fetch('/data/population_history_viz/basemap2.json').then(r => r.json()),
+    fetch('https://raw.githubusercontent.com/zephschafer/zephschafer/master/data/population_history_viz/basemap1.json').then(r => r.json()),
+    fetch('https://raw.githubusercontent.com/zephschafer/zephschafer/master/data/population_history_viz/basemap2.json').then(r => r.json()),
     // fetch('static/data/newtest/newcities.json').then(r => r.json())
   ]).then(([region, world, cities]) => {
     svg.append('path').attr('class', 'geo sphere')
