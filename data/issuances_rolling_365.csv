@@ -1,4 +1,4 @@
-date,sqft_per_permit,total_new_units_issued_amt,count_permits_issued,count_total_permits_issued
+date,total_sqft_issued_amt,total_new_units_issued_amt,count_permits_issued,count_total_permits_issued
 2010-04-12,8871.175373134329,2.4328358208955225,3.98019801980198,402
 2010-04-13,8793.54044117647,2.411764705882353,3.980392156862745,406
 2010-04-14,8773.648550724638,2.420289855072464,3.9805825242718447,410
