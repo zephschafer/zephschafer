@@ -1,5 +1,6 @@
-h1 { color: #909090;
-  /* font-family: 'Open Sans', sans-serif; */
+h1 {
+  color: #0d0d0d;
+  font-family: 'Open Sans', sans-serif;
   font-size: 40px;
   font-weight: 200;
   top: 20px;
@@ -17,7 +18,7 @@ h1 { color: #909090;
   margin-left:7.5%;
 }
 
- h2 { color: #909090;
+ h2 { color: #0d0d0d;
    /* font-family: 'Open Sans', sans-serif; */
    font-size: 20px;
    font-weight: 200;
@@ -29,7 +30,7 @@ h1 { color: #909090;
   }
 
 h3 {
-  color: #909090;
+  color: #0d0d0d;
   /* font-family: 'Open Sans', sans-serif; */
   font-size: 15px;
   font-weight: 400;
@@ -40,7 +41,7 @@ h3 {
 
 
 h4 {
-  color: #909090;
+  color: #0d0d0d;
     /* font-family: 'Open Sans', sans-serif; */
     font-size: 17px;
     font-weight: 200;
@@ -52,11 +53,11 @@ h4 {
 }
 
 p {
-  color: #9e9e9e;
+  color: #292929;
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background-color: #FEFEFE;
   font-size: 13px;
   font-weight: 200;
