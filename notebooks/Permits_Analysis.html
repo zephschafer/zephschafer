@@ -13167,7 +13167,8 @@ div#notebook {
 <span class="s1">        , value</span>
 <span class="s1">        , description</span>
 <span class="s1">    FROM `</span><span class="si">{</span><span class="n">project_name</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1">.permits_cleaned`</span>
-<span class="s1">    WHERE DATE(GREATEST(issued_at)) BETWEEN DATE(CURRENT_DATE - 7) AND DATE(CURRENT_DATE)</span>
+<span class="s1">    WHERE DATE(issued_at) BETWEEN DATE(CURRENT_DATE - 7) AND DATE(CURRENT_DATE)</span>
+<span class="s1">    ORDER BY issued_at DESC</span>
 <span class="s1">&#39;&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>\
 <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
     <span class="s1">&#39;structure_type&#39;</span><span class="p">:</span><span class="s1">&#39;Structure&#39;</span>
@@ -13444,14 +13445,13 @@ div#notebook {
 <span class="s1">    &lt;p style=&#39;margin-left:10%;margin-right:10%;text-align:left;font-size:16px;&#39;&gt;</span>
 <span class="s1">        To add to the City&#39;s supply of developed space, new construction projects require approval</span>
 <span class="s1">        from the City&#39;s &lt;a href=&#39;https://www.portland.gov/bds&#39;&gt;Bureau of Development Services&lt;/a&gt;.</span>
-<span class="s1">        This daily report tracks those permit issuances.</span>
 <span class="s1">        &lt;br&gt;&lt;br&gt;</span>
 <span class="s1">    &lt;p style=&#39;margin-left:10%;margin-right:10%;text-align:left;font-size:16px;&#39;&gt;</span>
 <span class="s1">        For the 365-day period ending on </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%A, %b </span><span class="si">%d</span><span class="s1">, %Y&#39;</span><span class="p">)</span><span class="si">}</span><span class="s1">, </span>
 <span class="s1">        the City issued a total of </span>
 <span class="s1">        </span><span class="si">{</span><span class="s1">&#39;</span><span class="si">{:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rolling_365_permits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">count_total_permits_issued</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s1"> </span>
-<span class="s1">        permits with at least 100 new square feet of development</span>
-<span class="s1">        , or </span><span class="si">{</span><span class="s1">&#39;</span><span class="si">{:,.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rolling_365_permits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">count_permits_issued</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s1"> per day.</span>
+<span class="s1">        permits with at least 100 new square feet of development,</span>
+<span class="s1">        or </span><span class="si">{</span><span class="s1">&#39;</span><span class="si">{:,.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rolling_365_permits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">count_permits_issued</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s1"> per day.</span>
 <span class="s1">        These allowed for a daily averge of </span>
 <span class="s1">        </span><span class="si">{</span><span class="s1">&#39;</span><span class="si">{:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rolling_365_permits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">total_sqft_issued_amt</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s1"> </span>
 <span class="s1">        new square feet of development, </span>
