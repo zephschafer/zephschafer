@@ -1,29 +1,29 @@
-name: Permits Page Updater
-on:
-  # push:
+# name: Permits Page Updater
+# on:
+#   # push:
 #   schedule:
-    # every day at 7 (timezone unknown)##
+#     # every day at 7 (timezone unknown)##
 #     - cron:  '0 9 * * *'
-jobs:
-  Permits-Updater:
-    runs-on: macos-latest
-    steps:
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: google-github-actions/auth@v0.4.0
-        with:
-          credentials_json: '${{ secrets.GOOGLE_BIGQ_ZS }}'
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: pwd
-      - run: pip3 install -r meta/requirements.txt
-      - run: jupyter nbconvert --execute notebooks/Permits_Analysis.ipynb
-      - name: 'Update version'
-        run: |
-          git add .
-          git commit -am "Update"
-          git push
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+# jobs:
+#   Permits-Updater:
+#     runs-on: macos-latest
+#     steps:
+#       - id: 'auth'
+#         name: 'Authenticate to Google Cloud'
+#         uses: google-github-actions/auth@v0.4.0
+#         with:
+#           credentials_json: '${{ secrets.GOOGLE_BIGQ_ZS }}'
+#       - name: checkout
+#         uses: actions/checkout@v2
+#       - name: List files in the repository
+#         run: |
+#           ls ${{ github.workspace }}
+#       - run: pwd
+#       - run: pip3 install -r meta/requirements.txt
+#       - run: jupyter nbconvert --execute notebooks/Permits_Analysis.ipynb
+#       - name: 'Update version'
+#         run: |
+#           git add .
+#           git commit -am "Update"
+#           git push
+#       - run: echo "🍏 This job's status is ${{ job.status }}."
