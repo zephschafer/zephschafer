@@ -1,0 +1,236 @@
+---
+# project page
+---
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>SqFt PDX</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/styles/main.css' | relative_url }}" type="text/css" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Hammersmith+One|Passion+One|Squada+One&display=swap" rel="stylesheet">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  </head>
+  <body>
+    <meta itemprop="description" content="DC.js + Leaflet chart"/>
+    <link rel="stylesheet" href="{{ '/styles/leaflet.css' | relative_url }}" type="" media="screen" />
+    <link rel="stylesheet" href="{{ '/styles/dc.css' | relative_url }}" type="" media="screen" />
+    <link rel="stylesheet" href="{{ '/styles/leaflet-legend.css' | relative_url }}" type="" media="screen" />
+
+    <div class="site-header">
+      <div id='navver'></div>
+      <h2><a href='/home'>Square Feet Portland</a></h2>
+      <ul>building permit data trends for Portland, OR</ul>
+    </div>
+    <div style='margin-top: 160px;position:absolute;' class='newdiv'></div>
+
+
+  	<div class="Wrapper">
+
+  	  <div class="RightContent">
+  	    <div>
+  	      <div class='columnheader'>
+  	          <p>
+  	              Recent Building Permits
+  	          </p>
+  	      </div>
+
+  	      <div class='DataNewTile'>
+  	        <h3 class='data_header'>Submitted in Past Day</h3>
+  	        <p class='data_tile'>
+  	          <a href='/recent_reviews'>
+  	            0
+  	          </a>
+  	        </p>
+  	        <p class='data_subtitle'> </p>
+  	      </div>
+
+  	      <div class='DataNewTile'>
+  	        <h3 class='data_header'>Total Waiting Approval</h3>
+  	        <p class='data_tile'>
+  	          <a href='/recent_outstanding'>
+  	            0
+  	          </a>
+  	        </p>
+  	        <p class='data_subtitle'> </p>
+  	      </div>
+
+  	      <div class='DataNewTile'>
+  	        <h3 class='data_header'>Issued in Past Day</h3>
+  	        <p class='data_tile'>
+  	          <a href='/recent_issues'>
+  	            0
+  	          </a>
+  	        </p>
+  	        <p class='data_subtitle'> </p>
+  	      </div>
+
+  	      <!-- <div class='DataNewTile2'>
+  	        <h3 class='data_header'>
+  	          <a href='/permitreviews'>
+  	            Permits Viewer
+  	          </a>
+  	        </h3>
+  	      </div> -->
+
+  	    </div>
+
+
+  	    <div class='Chart1'>
+  	      <h4 class='data_header'>Permits by Week Issued</h4>
+  	      <p class='datanotes'>
+  	        Drag cursor on the graph to show
+  	        recent permits on the map below
+  	      </p>
+  	      <div id="dc_time_graph"></div>
+  	      <div id="map" style="margin-top:10px;margin-left:20px;margin-right:20px;"></div>
+  	      <div id='dc-table-graph' class="table" style="margin-top:20px;margin-left:150px;"></div>
+  	    </div>
+  	  </div>
+  	</div>
+    <script type='module' src="{{ '/scripts/d3.js' | relative_url }}"></script>
+  	<script type='module' src="{{ '/scripts/crossfilter.js' | relative_url }}"></script>
+  	<script type='module' src="{{ '/scripts/dc.js' | relative_url }}"></script>
+  	<script type='module' src="{{ '/scripts/leaflet-src.js' | relative_url }}"></script>
+  	<script type='module' src="{{ '/scripts/colorbrewer.js' | relative_url }}"></script>
+  	<script type="text/javascript">
+  	if (screen.width <= 699) {
+  	document.location = "mobile";
+  	}
+  	</script>
+
+  	<script type='module' src="{{ '/scripts/leaflet.markercluster.js' | relative_url }}"></script>
+  	<script type='module' src="{{ '/scripts/dc.leaflet.js' | relative_url }}"></script>
+  	<script type="text/javascript">
+
+  	   var facilitiesGroup = false;
+  	   var returnObject = false;
+
+
+  	    Promise.all([d3.csv("https://www.squarefeetportland.com/chartdata/permits_query")])
+  	      .then(function([demo2]) {
+  	          returnObject = drawBubbles(demo2);
+  	    });
+
+  	    /*     Bubble Chart      */
+
+  	    function drawBubbles(data) {
+  	        // extract centroids from geojson shapes
+  	        dataP = [];
+  	        var pos = {}, max = 10;
+  	  			   parseTime = d3.timeParse("%s");
+  	  			   formatTime = d3.timeFormat("%b %d, %Y");
+  	           numberFormat = d3.format(".1s");
+
+
+
+  	        data.forEach(function(d) {
+  	  					var geo = data.find(f => f.name === d.name);
+  	  					var points = Array(Array(+d.lon, +d.lat));
+  	            var p = [d3.sum(points, p => +p[1])/points.length, d3.sum(points, p => +p[0])/points.length];
+  	            pos[d.name] = p;
+  	            d.sum = 0;
+  	  					dataP.push({'name':d.name,'sqft':+d.sqft,'date': d.date,'type':d.type,'description':d.description});
+  	  					d.sum+=+d[p];
+  	            if(d.sum > max)
+  	                max = d.sum;
+  	        });
+  	        delete data;
+
+  	        var xf = crossfilter(dataP);
+  	        	groupname = "Bubbles";
+  	        	facilities = xf.dimension(function(d) { return d.name; });
+  	        	facilitiesGroup = facilities.group().reduceSum(function(d) { return d.sqft;});
+  	  				permitsByWeek = xf.dimension(function(d) {return d3.timeWeek(parseTime(d.date)); });
+  	  				permitsByWeekGroup = permitsByWeek.group().reduceCount(function(d) { return d.date; });
+  	  				timeDimension = xf.dimension(function (d) {return d.date;});
+
+            var colorBrewerBlues7 = ["#eff3ff","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#084594"];
+
+  	        var bubbles = dc_leaflet.bubbleChart("#map",groupname)
+  	            .dimension(facilities)
+  	            .group(facilitiesGroup)
+  	            .center([45.52,-122.65])
+  	            .renderPopup(true)
+  							.height(325)
+  	            .colors(colorBrewerBlues7)
+  	            .colorDomain([
+  	                d3.min(facilitiesGroup.all(), dc.pluck('value')),
+  	                d3.mean(facilitiesGroup.all(), dc.pluck('value'))
+  	            ])
+  	            .colorAccessor(function(d,i) {
+  	                return d.value;
+  	            })
+  	            .popup(d => d.key)
+  	            .zoom(12)
+  	            .locationAccessor(d => pos[d.key])
+  	            .r(d3.scalePow().exponent(1 / 5))
+  	            .legend(dc_leaflet.legend().position('bottomright').legendTitle("Square Feet"));
+
+  	  					// time graph
+  	  	  var timegraph = dc.barChart("#dc_time_graph", groupname)
+  	  			    .transitionDuration(500)
+  	            .height(110)
+  	  			    .margins({top: 10, right: 10, bottom: 20, left: 40})
+  	  			    .dimension(permitsByWeek)
+  	  			    .group(permitsByWeekGroup)
+  	  					.elasticY(true)
+  	  			    .x(d3.scaleTime().domain(d3.extent(data, function(d) { return parseTime(d.date); })))
+  	  			    .xAxis();
+
+  	  			var datatable = dc.dataTable("#dc-table-graph", groupname)
+  	  				.width(960)
+  	  				.height(800)
+  	  				.dimension(timeDimension)
+  	  				.size(50)
+  	  					.columns(
+  								[
+  									{
+  										label: "Date of Issue",
+  										format: function (d) {
+  											return formatTime(parseTime(d.date));
+  										}
+  									},
+  									{
+  										label: "Total Square Feet",
+  										format: function (d) {
+  											return numberFormat(d.sqft);
+  										}
+  									},
+  									{
+  										label: "Address",
+  										format: function (d) {
+  											return d.name;
+  										}
+  									},
+  									{
+  										label: "Type",
+  										format: function (d) {
+  											return d.type;
+  										}
+  									},
+  									{
+  										label: "Description",
+  										format: function (d) {
+  											return d.description;
+  										}
+  									}
+  									]
+  								)
+  	  					.sortBy(function(d){ return d.dtg; })
+  	  					.order(d3.descending);
+
+  	        dc.renderAll(groupname);
+  	        return {bubbles: bubbles, timegraph: timegraph, datatable: datatable};
+  	    }
+
+
+  	</script>
+
+  </body>
+</html>
