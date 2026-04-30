@@ -3,24 +3,48 @@
 ---
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title id="title">Zeph Schafer</title>
-        <script src="https://d3js.org/d3.v5.min.js"></script>
-    </head>
-		<link rel="stylesheet" href="styles/style.css" type="" media="screen" />
-    <link href="https://fonts.googleapis.com/css?family=Cardo|Cormorant+Garamond|IBM+Plex+Sans|Kaushan+Script|Nanum+Myeongjo&display=swap" rel="stylesheet">
-    <body>
-        <svg id=bubbles style='z-index:-1'><svg>
-        <h1 style="color:rgb(30,30,30); margin-left:50%;margin-top:1px;font-size:25px;font-family: 'IBM Plex Sans', sans-serif;">
-          Zeph Schafer</h1>
-				<p>
-					<!-- <a href="subpages/a_about.html" style="color:rgb(30,30,30)">About</a> | -->
-					<a href="pages/portland_permits.html" style="color:rgb(30,30,30)">Portland Building Permits</a>  |
-					<a href="pages/contact.html" style="color:rgb(30,30,30)">Contact</a>
-					<!-- <a href="subpages/d_links.html"  style="color:rgb(30,30,30)"> | Other Links</a> -->
-				</p>
-        <script src="scripts/bubbles.js"></script>
-    </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeph Schafer</title>
+  <meta name="description" content="Zeph Schafer is a data engineering leader based in Portland, OR.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/styles/style.css' | relative_url }}">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header>
+      <div class="container">
+        <h1 class="site-name"><a href="{{ '/' | relative_url }}">Zeph Schafer</a></h1>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+
+        <section class="bio">
+          <p>Zeph Schafer leads data engineering at <a href="https://mantl.com" target="_blank">MANTL</a>, a fintech company building modern banking infrastructure for credit unions and community banks. He has spent the past several years building data systems that process hundreds of terabytes daily across hundreds of financial institutions.</p>
+          <p>Before MANTL, he worked across analytics engineering, business intelligence, and economic research. He holds an MSc in Economic History from the London School of Economics and a BSc in Economics from the University of Oregon.</p>
+        </section>
+
+<section>
+          <h2>Projects</h2>
+          <ul class="bullet-list">
+            <li><a href="{{ '/pages/portland_permits.html' | relative_url }}">Portland Building Permits</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Links</h2>
+          <ul class="bullet-list">
+            <li><a href="https://github.com/zephschafer" target="_blank">GitHub</a></li>
+            <li><a href="https://linkedin.com/in/zeph-schafer" target="_blank">LinkedIn</a></li>
+            <li><a href="mailto:zephyr.schafer@gmail.com">zephyr.schafer@gmail.com</a></li>
+          </ul>
+        </section>
+
+      </div>
+    </main>
+  </div>
+</body>
 </html>

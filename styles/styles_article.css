@@ -1,0 +1,306 @@
+:root {
+  --background: #f0eee6;
+  --text: #1f1e1d;
+  --text-muted: #5e5d59;
+  --border: #d1cfc5;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Site header */
+.site-header {
+  padding: 2.5rem 0 0;
+}
+
+.site-header .container {
+  width: 88%;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+}
+
+.site-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.site-name a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-name a:hover {
+  color: var(--text-muted);
+}
+
+.back-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.back-link:hover {
+  color: var(--text);
+}
+
+/* Article */
+article {
+  width: 88%;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+
+/* Title block */
+.article-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.3em;
+}
+
+.article-subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+  margin: 0 0 1.5rem;
+}
+
+.article-meta {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Abstract */
+.abstract {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.abstract-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: 0 0 0.5rem;
+}
+
+/* Body */
+p {
+  margin: 0 0 1.1em;
+}
+
+a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--text-muted);
+}
+
+/* Headings */
+h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 2.5rem 0 0.75rem;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 2rem 0 0.6rem;
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 1.5rem 0 0.5rem;
+}
+
+/* Section separator */
+.section-rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* Block quotes */
+blockquote {
+  margin: 1.5rem 0 1.5rem 1.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border);
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* Equations */
+.equation {
+  text-align: center;
+  font-style: italic;
+  margin: 1.2rem 0;
+  color: var(--text);
+}
+
+/* Exhibit captions */
+.exhibit {
+  margin: 2rem 0;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+.exhibit-label {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.exhibit img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 0.75rem;
+}
+
+.exhibit img + img {
+  width: auto;
+  max-width: 100%;
+  max-height: 22rem;
+}
+
+.exhibit-note {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin: 0.5rem 0 1rem;
+  overflow-x: auto;
+  display: block;
+}
+
+th {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.35rem 0.6rem 0.35rem 0;
+  border-bottom: 1px solid var(--text-muted);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.25rem 0.6rem 0.25rem 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.table-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.3rem;
+}
+
+/* Footnotes */
+sup {
+  font-size: 0.7em;
+  line-height: 0;
+  position: relative;
+  top: -0.5em;
+}
+
+sup a {
+  text-decoration: none;
+  color: var(--text-muted);
+}
+
+sup a:hover {
+  color: var(--text);
+}
+
+.endnotes {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.endnotes h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.endnote {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.endnote-num {
+  flex-shrink: 0;
+  min-width: 1.5rem;
+}
+
+/* Bibliography */
+.bibliography {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.bibliography h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.bib-entry {
+  font-size: 0.88rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+  line-height: 1.5;
+}
