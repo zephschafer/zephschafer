@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/zephschafer/Documents/GitHub/quipu-data-generator/**)",
+      "Bash(xargs cat *)",
+      "Bash(duckdb quipu.duckdb \"SHOW TABLES;\")",
+      "Bash(python3 -c \"import duckdb; con = duckdb.connect\\('quipu.duckdb'\\); print\\(con.execute\\('SHOW TABLES'\\).fetchdf\\(\\)\\)\")",
+      "Bash(python3 -m pip show duckdb)",
+      "Bash(uv run *)",
+      "Bash(pip3 install *)",
+      "Bash(python3 -c \"import duckdb; print\\('ok'\\)\")",
+      "Skill(schedule)",
+      "Skill(schedule:*)"
+    ],
+    "additionalDirectories": [
+      "/Users/zephschafer/Documents/GitHub/zephschafer/data"
+    ]
+  }
+}
