@@ -18,13 +18,13 @@ body {
   background-color: var(--background);
   color: var(--text);
   font-family: 'Newsreader', Georgia, serif;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   line-height: 1.6;
 }
 
 .container {
   width: 80%;
-  max-width: 38.75rem;
+  max-width: 44rem;
   margin: 0 auto;
   padding: 0 1rem;
 }
